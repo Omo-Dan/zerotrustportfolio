@@ -1,0 +1,15 @@
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Infrastructure state (can contain secrets)
+.terraform/
+*.tfstate*
