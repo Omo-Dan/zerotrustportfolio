@@ -67,6 +67,15 @@ disclosure, Denial of service, Elevation of privilege.
 | T-14 | Denial of service | Data is lost with no way to restore it | ZT-18 |
 | T-15 | Elevation of privilege | A request reaches an admin route without being authorised | ZT-02, ZT-03, ZT-07 |
 | T-16 | Elevation of privilege | A compromised container gains more access than it needs | ZT-08, ZT-10 |
+| T-17 | Information disclosure | Personal data or a private email address is committed to the public repository | HE-07, ZT-15 |
+| T-18 | Tampering | A setting is left unsafe: debug mode on, a port or database rule too open | HE-03, HE-04, ZT-12 |
+| T-19 | Tampering | An untested change goes straight to production | HE-01, HE-02, QA-03 |
+| T-20 | Spoofing | A maintainer account or laptop is phished or compromised | HE-05, ZT-06, ZT-10 |
+| T-21 | Denial of service | A bad release or an accidental deletion takes the site down | HE-06, ZT-18 |
+
+- As a solo maintainer I am the most likely source of mistakes. The
+  controls for that are mostly automated, because a check that runs
+  every time works better than one I have to remember.
 
 ## Assumptions and limits
 - Public pages are anonymous and read-only, so the main attack surface is
