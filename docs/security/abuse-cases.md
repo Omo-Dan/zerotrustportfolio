@@ -21,3 +21,7 @@ Tests only ever run against my own local and deployed instances.
 | AC-10 | Send a malformed request to provoke an error page | A generic message comes back, with no stack trace or file paths | T-08: ZT-14 | 1 |
 | AC-11 | Commit a credential to the repository | The pre-commit hook and the CI job both block it | T-07: ZT-15 | 0 |
 | AC-12 | Slip a dependency with a known vulnerability into the build | The dependency scan fails the build | T-04: ZT-16 | 1 |
+
+| AC-13 | Push a change straight to main, skipping review and checks | The push is rejected, even for the repository owner | T-19: HE-01, HE-02 | 0 |
+| AC-14 | Start the app in production with debug on or a required secret missing | The app refuses to start | T-18: HE-03 | 1 |
+| AC-15 | Ship a broken release | The previous version is restored from the pipeline within minutes | T-21: HE-06 | 2 |
