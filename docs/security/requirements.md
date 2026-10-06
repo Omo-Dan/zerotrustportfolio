@@ -55,3 +55,18 @@ Quality checks run in the same pipeline as the security checks.
 | QA-02 | Type checks pass on every change. | CI job | 1 |
 | QA-03 | Automated tests run on every pull request. The build fails if any test fails, and coverage is reported. | CI job | 1 |
 | QA-04 | Every security requirement above has at least one test or a documented check. | Review at the end of each sprint | 1-7 |
+
+## Mistakes and account compromise
+
+Most incidents start with an ordinary mistake or a stolen account, so
+these controls are automated wherever possible.
+
+| ID | Requirement | How it's verified | Sprint |
+|----|-------------|-------------------|--------|
+| HE-01 | Production only changes through the pipeline, from the main branch. Nothing is edited by hand on a server. | Repository settings; deploy logs | 0, 2 |
+| HE-02 | The main branch requires a pull request and passing checks. The rule applies to me as the owner too, and force pushes are blocked. | Repository settings | 0 |
+| HE-03 | Production configuration fails closed. Debug mode is off by default, and the app refuses to start if a required secret or security setting is missing. | Automated tests | 1 |
+| HE-04 | Infrastructure is defined as code and scanned for unsafe settings such as open ports and public databases. | IaC scan | 2, 5 |
+| HE-05 | Every maintainer account (GitHub, registrar, hosting, cloud) uses MFA. Commits are signed, and access tokens are minimal and short-lived. | Manual checklist | 0, 2 |
+| HE-06 | Any release can be rolled back to the previous version quickly. | Rollback drill | 2, 6 |
+| HE-07 | The repository never contains personal data or a private email address. Commits use a no-reply address. | Review before the first push; scan in CI | 0 |
