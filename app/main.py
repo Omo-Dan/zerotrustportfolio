@@ -1,6 +1,10 @@
+import logging
 from collections.abc import Awaitable, Callable
 
 from fastapi import FastAPI, Request, Response
+from fastapi.responses import JSONResponse
+
+logger = logging.getLogger("app")
 
 # The API docs pages describe every route to anyone who asks, so they are off.
 app = FastAPI(
@@ -31,6 +35,21 @@ async def add_security_headers(
     for name, value in SECURITY_HEADERS.items():
         response.headers[name] = value
     return response
+
+
+@app.exception_handler(Exception)
+async def unhandled_error(request: Request, exc: Exception) -> JSONResponse:
+    # Details go to the log only. The visitor gets a plain message.
+    logger.error(
+        "Unhandled error on %s %s", request.method, request.url.path, exc_info=exc
+    )
+    # This handler runs outside the middleware above, so it sets the
+    # security headers itself.
+    return JSONResponse(
+        {"detail": "Internal Server Error"},
+        status_code=500,
+        headers=SECURITY_HEADERS,
+    )
 
 
 @app.get("/healthz")
