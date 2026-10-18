@@ -4,11 +4,15 @@ from collections.abc import Awaitable, Callable
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
 
+from app.config import load_settings
+
 logger = logging.getLogger("app")
+settings = load_settings()
 
 # The API docs pages describe every route to anyone who asks, so they are off.
 app = FastAPI(
     title="zerotrustportfolio",
+    debug=settings.debug,
     docs_url=None,
     redoc_url=None,
     openapi_url=None,
