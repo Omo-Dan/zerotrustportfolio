@@ -1,0 +1,16 @@
+target-version = "py314"
+line-length = 88
+
+[lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes: unused imports and names, undefined names
+    "I",   # import ordering
+    "B",   # bugbear: likely bugs
+    "UP",  # modern Python syntax
+    "S",   # bandit-style security checks
+]
+
+[lint.per-file-ignores]
+# Tests use plain assert statements, which the security rules flag.
+"tests/*" = ["S101"]
