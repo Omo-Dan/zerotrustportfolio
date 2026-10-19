@@ -18,7 +18,5 @@ class Settings:
 def load_settings() -> Settings:
     env = os.environ.get("APP_ENV")
     if env not in ALLOWED_ENVIRONMENTS:
-        raise ConfigError(
-            "APP_ENV must be one of: " + ", ".join(ALLOWED_ENVIRONMENTS)
-        )
+        raise ConfigError("APP_ENV must be one of: " + ", ".join(ALLOWED_ENVIRONMENTS))
     return Settings(env=env)
