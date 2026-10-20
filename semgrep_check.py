@@ -1,5 +1,0 @@
-import subprocess
-
-
-def run(cmd: str) -> None:
-    subprocess.run(cmd, shell=True)  # noqa: S602
