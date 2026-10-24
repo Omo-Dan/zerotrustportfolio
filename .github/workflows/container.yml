@@ -8,18 +8,26 @@ on:
 permissions:
   contents: read
 
+env:
+  PINNED_TRIVY_VERSION: "0.76.1"
+
 jobs:
   container:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
       - name: Build image
         run: docker build --tag zerotrustportfolio:ci .
+
       - name: Check the container runs as non-root
         run: |
           uid="$(docker run --rm --entrypoint id zerotrustportfolio:ci -u)"
           echo "container user id: ${uid}"
           test "${uid}" != "0"
+
       - name: Check the health endpoint answers
         run: |
           docker run --detach --name app --env APP_ENV=production --publish 8000:8000 zerotrustportfolio:ci
@@ -32,3 +40,12 @@ jobs:
           done
           docker logs app
           exit 1
+
+      - name: Install Trivy (pinned and checksum-verified)
+        run: |
+          curl -sSfL -o trivy.tar.gz "https://github.com/aquasecurity/trivy/releases/download/v${PINNED_TRIVY_VERSION}/trivy_${PINNED_TRIVY_VERSION}_Linux-64bit.tar.gz"
+          echo "c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0  trivy.tar.gz" | sha256sum --check
+          tar -xzf trivy.tar.gz trivy
+
+      - name: Scan the image for known vulnerabilities
+        run: ./trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --no-progress zerotrustportfolio:ci
