@@ -24,5 +24,4 @@ jobs:
         run: pip-audit -r requirements.txt --require-hashes --disable-pip
       - name: Audit dev requirements
         run: pip-audit -r requirements-dev.txt --require-hashes --disable-pip
-      - name: Planted check (temporary)
-        run: pip-audit -r audit-planted.txt --no-deps --disable-pip
+      
