@@ -49,3 +49,5 @@ jobs:
 
       - name: Scan the image for known vulnerabilities
         run: ./trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --no-progress zerotrustportfolio:ci
+      - name: Planted check (temporary)
+        run: ./trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --no-progress alpine:3.12
