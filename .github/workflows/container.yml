@@ -58,3 +58,5 @@ jobs:
           docker run --rm --entrypoint sh zerotrustportfolio:ci -c "find / \( -name 'urllib3*' -o -name 'msgpack*' -o -name 'setuptools*' \) -not -path '/proc/*' 2>/dev/null | head -n 30"
           echo "--- findings that have a fix available ---"
           ./trivy image --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --no-progress zerotrustportfolio:ci 2>&1 | grep -E "^(zerotrustportfolio|Python)|Total:" || true
+
+          
