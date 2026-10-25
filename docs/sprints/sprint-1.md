@@ -22,7 +22,7 @@ Each item names the requirements it covers (see
 | S1-07 | Static analysis (SAST) | AC-07 | The scan job fails on a high-severity finding |
 | S1-08 | Dependency scan | ZT-16, AC-12 | The scan job fails on a known vulnerability |
 | S1-09 | Container image that runs as a non-root user | ZT-08 | The image builds in CI and the container runs as a non-root user |
-| S1-10 | Container image scan | ZT-16 | The scan job fails on a high or critical finding |
+| S1-10 | Container image scan | ZT-16 | The scan job fails on a high or critical finding that has a fix available |
 | S1-11 | Dependabot for Python packages, GitHub Actions and Docker | ZT-16 | Update pull requests appear and pass through the same checks |
 | S1-12 | GitHub Actions pinned to commit SHAs | ZT-10 | Every `uses:` line references a full commit SHA |
 
