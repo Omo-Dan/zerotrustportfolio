@@ -7,7 +7,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /srv
 
 COPY requirements.txt .
-RUN python -m pip install --require-hashes -r requirements.txt
+RUN python -m pip install --require-hashes -r requirements.txt \
+    && python -m pip uninstall --yes pip
 
 COPY app ./app
 

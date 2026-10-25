@@ -37,7 +37,7 @@ delivered. If a requirement can't be checked, it doesn't belong here.
 | ZT-13 | Sign-ins and admin actions are written to an audit log that never contains secrets. | Automated tests | 4 |
 | ZT-14 | Errors show a generic message to users. Details go to the logs only. | Automated tests | 1 |
 | ZT-15 | Secrets are never committed. Secret scanning runs before each commit and in CI. | Pre-commit hook; CI job | 0 |
-| ZT-16 | Dependencies and container images are scanned, and high or critical findings fail the build. | CI scans | 1 |
+| ZT-16 | Dependencies are scanned with pip-audit, and any known vulnerability fails the build. The container image is scanned with Trivy: high or critical findings that have a fix available fail the build, and findings with no fix yet are reported in every build. | CI scans | 1 |
 | ZT-17 | The site is served over TLS only, with HSTS, a strict Content Security Policy and other security headers. | Automated tests; ZAP scan | 1-2 |
 | ZT-18 | Backups are encrypted and a restore has been tested. | Restore drill | 6 |
 | ZT-19 | The domain registrar account uses MFA and registrar lock, and CAA records limit who can issue certificates. | Manual checklist | 2 |
