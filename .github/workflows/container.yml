@@ -49,5 +49,12 @@ jobs:
 
       - name: Scan the image for known vulnerabilities
         run: ./trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --no-progress zerotrustportfolio:ci
-      - name: Planted check (temporary)
-        run: ./trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --no-progress alpine:3.12
+      - name: Diagnose findings (temporary)
+        if: always()
+        run: |
+          echo "--- installed python packages ---"
+          docker run --rm --entrypoint python zerotrustportfolio:ci -m pip list
+          echo "--- where the flagged packages live ---"
+          docker run --rm --entrypoint sh zerotrustportfolio:ci -c "find / \( -name 'urllib3*' -o -name 'msgpack*' -o -name 'setuptools*' \) -not -path '/proc/*' 2>/dev/null | head -n 30"
+          echo "--- findings that have a fix available ---"
+          ./trivy image --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --no-progress zerotrustportfolio:ci 2>&1 | grep -E "^(zerotrustportfolio|Python)|Total:" || true
