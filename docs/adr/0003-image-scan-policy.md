@@ -29,6 +29,7 @@ unfixed findings entirely would hide real risk.
 When a distribution publishes a fix for a finding that was unfixed, the
 next build fails until the base image is updated. That is intended.
 
-The scan runs on pull requests and on pushes to main. Advisories appear
-without any code change, so a scheduled run is still needed and is not
-in place yet.
+The scan runs on pull requests, on pushes to main and every Monday.
+Advisories appear without any code change, and the weekly run catches
+those between changes.
+
