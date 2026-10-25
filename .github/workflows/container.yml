@@ -52,7 +52,8 @@ jobs:
 
       - name: Report all findings, including those with no fix yet (informational)
         if: always()
-        run: ./trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 0 --no-progress zerotrustportfolio:ciH,CRITICAL --exit-code 1 --no-progress zerotrustportfolio:ci
+        run: ./trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 0 --no-progress zerotrustportfolio:ci
+
       - name: Diagnose findings (temporary)
         if: always()
         run: |
@@ -62,4 +63,3 @@ jobs:
           docker run --rm --entrypoint sh zerotrustportfolio:ci -c "find / \( -name 'urllib3*' -o -name 'msgpack*' -o -name 'setuptools*' \) -not -path '/proc/*' 2>/dev/null | head -n 30"
           echo "--- findings that have a fix available ---"
           ./trivy image --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --no-progress zerotrustportfolio:ci 2>&1 | grep -E "^(zerotrustportfolio|Python)|Total:" || true
-
