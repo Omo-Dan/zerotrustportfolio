@@ -23,7 +23,7 @@ Changelog and the project uses semantic versioning.
 - Signed commits using the GitHub noreply address
 
 
-## [0.2.0] - 2026-10-25
+## [0.2.0] - 2026-10-26
 
 ### Added
 - Health endpoint at /healthz
