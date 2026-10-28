@@ -1,0 +1,28 @@
+name: deploy
+
+on:
+  workflow_run:
+    workflows: [container]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-24.04
+    environment: production
+    steps:
+      - name: Ask Render to deploy this commit
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          curl --fail --silent --show-error --max-time 60 --request POST "${RENDER_DEPLOY_HOOK_URL}&ref=${COMMIT_SHA}" > /dev/null
+          echo "Deploy requested for ${COMMIT_SHA}"
