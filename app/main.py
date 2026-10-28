@@ -1,8 +1,10 @@
 import logging
 from collections.abc import Awaitable, Callable
+from pathlib import Path
 
 from fastapi import FastAPI, Request, Response
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.config import load_settings
 
@@ -59,3 +61,13 @@ async def unhandled_error(request: Request, exc: Exception) -> JSONResponse:
 @app.get("/healthz")
 def healthz() -> dict[str, str]:
     return {"status": "ok"}
+
+
+BASE_DIR = Path(__file__).parent
+
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
+
+
+@app.get("/")
+def landing() -> FileResponse:
+    return FileResponse(BASE_DIR / "pages" / "index.html", media_type="text/html")
