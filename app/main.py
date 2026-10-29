@@ -1,4 +1,5 @@
 import logging
+import os
 from collections.abc import Awaitable, Callable
 from pathlib import Path
 
@@ -76,3 +77,8 @@ def landing() -> FileResponse:
 @app.get("/skills")
 def skills() -> FileResponse:
     return FileResponse(BASE_DIR / "pages" / "skills.html", media_type="text/html")
+
+
+@app.get("/version")
+def version() -> dict[str, str]:
+    return {"commit": os.environ.get("RENDER_GIT_COMMIT", "unknown")}

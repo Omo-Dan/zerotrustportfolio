@@ -26,3 +26,22 @@ jobs:
         run: |
           curl --fail --silent --show-error --max-time 60 --request POST "${RENDER_DEPLOY_HOOK_URL}&ref=${COMMIT_SHA}" > /dev/null
           echo "Deploy requested for ${COMMIT_SHA}"
+
+      - name: Wait until the new commit is live
+        env:
+          COMMIT_SHA: ${{ github.event.workflow_run.head_sha }}
+          SITE_URL: https://zerotrustportfolio.onrender.com
+        run: |
+          for attempt in $(seq 1 60); do
+            live="$(curl --silent --max-time 30 "${SITE_URL}/version" | jq -r '.commit // empty' 2>/dev/null || true)"
+            echo "attempt ${attempt}: live commit is ${live:-unavailable}"
+            if [ "${live}" = "${COMMIT_SHA}" ]; then
+              echo "The deployed commit is live."
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "Render did not report ${COMMIT_SHA} within 15 minutes."
+          exit 1
+
+          
