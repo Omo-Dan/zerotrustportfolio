@@ -71,3 +71,8 @@ app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 @app.get("/")
 def landing() -> FileResponse:
     return FileResponse(BASE_DIR / "pages" / "index.html", media_type="text/html")
+
+
+@app.get("/skills")
+def skills() -> FileResponse:
+    return FileResponse(BASE_DIR / "pages" / "skills.html", media_type="text/html")
