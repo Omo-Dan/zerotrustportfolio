@@ -82,3 +82,8 @@ def skills() -> FileResponse:
 @app.get("/version")
 def version() -> dict[str, str]:
     return {"commit": os.environ.get("RENDER_GIT_COMMIT", "unknown")}
+
+
+@app.get("/about")
+def about() -> FileResponse:
+    return FileResponse(BASE_DIR / "pages" / "about.html", media_type="text/html")
