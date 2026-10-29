@@ -87,3 +87,8 @@ def version() -> dict[str, str]:
 @app.get("/about")
 def about() -> FileResponse:
     return FileResponse(BASE_DIR / "pages" / "about.html", media_type="text/html")
+
+
+@app.get("/projects")
+def projects() -> FileResponse:
+    return FileResponse(BASE_DIR / "pages" / "projects.html", media_type="text/html")
