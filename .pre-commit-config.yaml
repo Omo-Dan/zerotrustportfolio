@@ -8,3 +8,11 @@ repos:
     hooks:
       - id: detect-private-key
       - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: ruff format
+        entry: python -m ruff format
+        language: system
+        types: [python]
