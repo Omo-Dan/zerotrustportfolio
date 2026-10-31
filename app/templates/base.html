@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://zerotrustportfolio.onrender.com{{ path }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Daniel Omondi Ojiambo">
+  <meta property="og:url" content="https://zerotrustportfolio.onrender.com{{ path }}">
+  <link rel="stylesheet" href="/static/site.css">
+</head>
+<body>
+  {% include "partials/header.html" %}
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  {% include "partials/footer.html" %}
+</body>
+</html>
