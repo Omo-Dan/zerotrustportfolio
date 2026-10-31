@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% set title = "Daniel Omondi Ojiambo | Cybersecurity and software developer" %}
+{% set description = "Cybersecurity and software developer building secure web applications and systems." %}
+{% set path = "/" %}
+{% set active = "home" %}
+{% block content %}
+    <h1>Daniel Omondi Ojiambo</h1>
+    <p class="role">Cybersecurity and software developer</p>
+    <p class="tagline">I build secure web applications and systems.</p>
+    <p>I build applications with a security-first approach. This portfolio site is an example of it. Every change goes through a pull request and a set of automated checks: secret scanning, linting, type checks, tests, static analysis, and dependency and container image scans. Only the pipeline deploys it, and only after those checks pass. The source code, the security requirements and the decisions behind them are public, and the roadmap shows what's still to come.</p>
+    <ul class="links">
+      <li><a href="https://github.com/Omo-Dan/zerotrustportfolio">Source code on GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/daniel-omondi-ojiambo-852021180/">LinkedIn</a></li>
+    </ul>
+{% endblock %}

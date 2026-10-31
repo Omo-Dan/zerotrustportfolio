@@ -1,0 +1,18 @@
+   {% extends "base.html" %}
+   {% set title = "Projects | Daniel Omondi Ojiambo" %}
+   {% set description = "Projects by Daniel Omondi Ojiambo, including this security-first web application." %}
+   {% set path = "/projects" %}
+   {% set active = "projects" %}
+   {% block content %}
+    <h1>Projects</h1>
+
+    <h2>zerotrustportfolio</h2>
+    <p>This site. A security-first web application delivered through a pipeline. Every change goes through a pull request and automated checks: secret scanning, linting, type checks, tests, static analysis, dependency scanning and container image scanning. Only the pipeline deploys it, after those checks pass, and it confirms the new version is live. The requirements, threat model and decisions are in the repository.</p>
+    <p>Built with Python, FastAPI, Docker, GitHub Actions and Render.</p>
+    <ul class="links">
+      <li><a href="https://github.com/Omo-Dan/zerotrustportfolio">Source code on GitHub</a></li>
+    </ul>
+
+    <h2>Imara FinTrust (in progress)</h2>
+    <p>A compliance engine for Kenyan fintech companies. It maps local requirements, such as the Data Protection Act 2019, against international standards such as GDPR and ISO 27001, and produces gap reports and audit-ready documentation.</p>
+   {% endblock %}

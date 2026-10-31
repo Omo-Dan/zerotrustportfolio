@@ -1,27 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skills | Daniel Omondi Ojiambo</title>
-  <meta name="description" content="Skills and certifications in cybersecurity, software development, cloud computing and DevSecOps.">
-    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
-  <link rel="canonical" href="https://zerotrustportfolio.onrender.com/skills">
-  <meta property="og:title" content="Skills | Daniel Omondi Ojiambo">
-  <meta property="og:description" content="Skills and certifications in cybersecurity, software development, cloud computing and DevSecOps.">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Daniel Omondi Ojiambo">
-  <meta property="og:url" content="https://zerotrustportfolio.onrender.com/skills">
-  <link rel="stylesheet" href="/static/site.css">
-</head>
-<body>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/skills">Skills</a>
-    <a href="/projects">Projects</a>
-  </nav>
-  <main>
+   {% extends "base.html" %}
+   {% set title = "Skills | Daniel Omondi Ojiambo" %}
+   {% set description = "Skills and certifications in cybersecurity, software development, cloud computing and DevSecOps." %}
+   {% set path = "/skills" %}
+   {% set active = "skills" %}
+   {% block content %}
     <h1>Skills</h1>
 
     <h2>Cybersecurity</h2>
@@ -76,6 +58,4 @@
     <ul class="skills">
       <li>AWS Certified Cloud Practitioner, Amazon Web Services, <a href="https://YOUR-VERIFICATION-LINK">verify</a></li>
     </ul>
-  </main>
-</body>
-</html>
+ {% endblock %}
