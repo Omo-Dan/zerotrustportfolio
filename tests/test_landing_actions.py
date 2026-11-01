@@ -11,7 +11,7 @@ LINKEDIN = "https://www.linkedin.com/in/daniel-omondi-ojiambo-852021180/"
 
 
 def main_of(path: str) -> str:
-    match = re.search(r"<main>.*?</main>", client.get(path).text, re.S)
+    match = re.search(r"<main[^>]*>.*?</main>", client.get(path).text, re.S)
     assert match is not None
     return match.group(0)
 
