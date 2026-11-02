@@ -37,3 +37,12 @@ def test_skills_page_has_no_placeholder_links():
     html = client.get("/skills").text
     assert "YOUR-" not in html
     assert "example.com" not in html
+
+
+def test_certification_links_to_a_public_https_verification_page():
+    html = client.get("/skills").text
+    match = re.search(
+        r'<h2>Certifications</h2>\s*<ul class="skills certs">(.*?)</ul>', html, re.S
+    )
+    assert match is not None
+    assert re.search(r'<a href="https://[^"]+">verify</a>', match.group(1))
