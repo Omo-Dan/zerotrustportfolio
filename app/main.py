@@ -96,6 +96,11 @@ def projects(request: Request) -> Response:
     return page(request, "pages/projects.html")
 
 
+@app.get("/certifications")
+def certifications(request: Request) -> Response:
+    return page(request, "pages/certifications.html")
+
+
 @app.get("/version")
 def version() -> dict[str, str]:
     return {"commit": os.environ.get("RENDER_GIT_COMMIT", "unknown")}

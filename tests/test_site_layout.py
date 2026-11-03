@@ -7,7 +7,7 @@ from app.main import app
 
 client = TestClient(app)
 
-PAGES = ["/", "/about", "/skills", "/projects"]
+PAGES = ["/", "/about", "/skills", "/projects", "/certifications"]
 
 
 def footer_of(path: str) -> str:

@@ -24,7 +24,6 @@ def test_skills_page_has_the_skill_groups():
         "Software development",
         "Cloud computing and AWS",
         "DevSecOps and delivery",
-        "Certifications",
     ):
         assert f"<h2>{group}</h2>" in html
 
@@ -59,3 +58,8 @@ def test_skills_page_has_no_placeholders_left():
     html = client.get("/skills").text
     assert "[" not in html
     assert "]" not in html
+
+
+def test_skills_page_no_longer_lists_certifications():
+    html = client.get("/skills").text
+    assert "<h2>Certifications</h2>" not in html

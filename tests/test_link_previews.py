@@ -6,7 +6,7 @@ from app.main import app
 client = TestClient(app)
 
 SITE = "https://zerotrustportfolio.onrender.com"
-PAGES = ["/", "/about", "/skills", "/projects"]
+PAGES = ["/", "/about", "/skills", "/projects", "/certifications"]
 
 
 @pytest.mark.parametrize("path", PAGES)
