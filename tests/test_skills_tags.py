@@ -29,8 +29,8 @@ def test_each_skill_tag_has_a_visible_boundary():
 
 
 def test_certifications_list_is_marked():
-    html = client.get("/skills").text
-    assert re.search(r'<h2>Certifications</h2>\s*<ul class="skills certs">', html)
+    html = client.get("/certifications").text
+    assert '<ul class="skills certs">' in html
 
 
 def test_skills_page_has_no_placeholder_links():
@@ -40,9 +40,7 @@ def test_skills_page_has_no_placeholder_links():
 
 
 def test_certification_links_to_a_public_https_verification_page():
-    html = client.get("/skills").text
-    match = re.search(
-        r'<h2>Certifications</h2>\s*<ul class="skills certs">(.*?)</ul>', html, re.S
-    )
+    html = client.get("/certifications").text
+    match = re.search(r'<ul class="skills certs">(.*?)</ul>', html, re.S)
     assert match is not None
     assert re.search(r'<a href="https://[^"]+">verify</a>', match.group(1))
