@@ -42,4 +42,5 @@ jobs:
         run: |
           mkdir zap-out
           chmod 777 zap-out
-          docker run --rm --network zapnet --volume "${PWD}/zap-out:/zap/wrk:rw" "${ZAP_IMAGE}" zap-baseline.py -t http://app:8000 -r zap-report.html -I
+          cp .zap/rules.tsv zap-out/rules.tsv
+          docker run --rm --network zapnet --volume "${PWD}/zap-out:/zap/wrk:rw" "${ZAP_IMAGE}" zap-baseline.py -t http://app:8000 -c rules.tsv -r zap-report.html -I

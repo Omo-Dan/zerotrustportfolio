@@ -1,0 +1,4 @@
+# Accepted ZAP findings. Every rule needs a written reason on the comment line directly above it.
+# Columns, separated by tabs: rule id, action (IGNORE, INFO, WARN, FAIL), rule name.
+# 10049 Storable and Cacheable Content: every page is public and identical for all visitors, so shared caching is acceptable. Any page with user input or a session must send Cache-Control: no-store, and this rule must go back to WARN or FAIL before such a page ships.
+10049	INFO	Storable and Cacheable Content
