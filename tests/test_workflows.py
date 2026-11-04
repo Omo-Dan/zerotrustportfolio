@@ -25,9 +25,21 @@ def rule_lines() -> list[tuple[int, str]]:
     ]
 
 
-def test_zap_rules_file_accepts_cacheable_content_only():
-    ids = [line.split("\t")[0] for _, line in rule_lines()]
-    assert ids == ["10049"]
+def actions() -> dict[str, str]:
+    parts = [line.split("\t") for _, line in rule_lines()]
+    return {fields[0]: fields[1] for fields in parts}
+
+
+def test_only_cacheable_content_is_accepted():
+    accepted = {
+        rule_id for rule_id, action in actions().items() if action in ("IGNORE", "INFO")
+    }
+    assert accepted == {"10049"}
+
+
+def test_security_header_rules_fail_the_build():
+    failing = {rule_id for rule_id, action in actions().items() if action == "FAIL"}
+    assert failing == {"10020", "10021", "10035", "10038", "10063", "90004"}
 
 
 def test_every_accepted_zap_rule_has_a_written_reason():
