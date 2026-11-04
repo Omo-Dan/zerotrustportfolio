@@ -13,6 +13,9 @@ jobs:
   zap-baseline:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    env:
+      # ZAP stable release, pinned by digest on 2026-11-04
+      ZAP_IMAGE: ghcr.io/zaproxy/zaproxy@sha256:9624669db72f54d86c4b46a7064518bd9bf79d8c61a4c31befa9923489f328af
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
@@ -35,13 +38,9 @@ jobs:
           docker logs app
           exit 1
 
-      - name: Pull ZAP and print its digest
-        run: |
-          docker pull ghcr.io/zaproxy/zaproxy:stable
-          docker image inspect ghcr.io/zaproxy/zaproxy:stable --format '{{index .RepoDigests 0}}'
-
       - name: ZAP baseline scan (passive, advisory)
         run: |
           mkdir zap-out
           chmod 777 zap-out
-          docker run --rm --network zapnet --volume "${PWD}/zap-out:/zap/wrk:rw" ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://app:8000 -r zap-report.html -I
+          cp .zap/rules.tsv zap-out/rules.tsv
+          docker run --rm --network zapnet --volume "${PWD}/zap-out:/zap/wrk:rw" "${ZAP_IMAGE}" zap-baseline.py -t http://app:8000 -c rules.tsv -r zap-report.html -I

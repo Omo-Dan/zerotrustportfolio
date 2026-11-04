@@ -1,0 +1,16 @@
+# Accepted ZAP findings. Every rule needs a written reason on the comment line directly above it.
+# Columns, separated by tabs: rule id, action (IGNORE, INFO, WARN, FAIL), rule name.
+# 10049 Storable and Cacheable Content: every page is public and identical for all visitors, so shared caching is acceptable. Any page with user input or a session must send Cache-Control: no-store, and this rule must go back to WARN or FAIL before such a page ships.
+10049	INFO	Storable and Cacheable Content
+# 10020: a missing anti-clickjacking header is a regression of ZT-17, so it fails the build.
+10020	FAIL	Anti-clickjacking Header
+# 10021: a missing X-Content-Type-Options header is a regression of ZT-17, so it fails the build.
+10021	FAIL	X-Content-Type-Options Header Missing
+# 10035: a missing Strict-Transport-Security header is a regression of ZT-17, so it fails the build.
+10035	FAIL	Strict-Transport-Security Header Not Set
+# 10038: a missing Content-Security-Policy header is a regression of ZT-17, so it fails the build.
+10038	FAIL	Content Security Policy (CSP) Header Not Set
+# 10063: a missing Permissions-Policy header is a regression of ZT-17, so it fails the build.
+10063	FAIL	Permissions Policy Header Not Set
+# 90004: missing cross-origin isolation headers are a regression of ZT-17, so they fail the build.
+90004	FAIL	Insufficient Site Isolation Against Spectre Vulnerability
