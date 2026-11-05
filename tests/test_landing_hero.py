@@ -8,7 +8,14 @@ from app.main import app
 client = TestClient(app)
 CSS = Path("app/static/site.css").read_text(encoding="utf-8")
 
-CHECKS = ("secret-scan", "quality", "semgrep", "dependency-audit", "container")
+CHECKS = (
+    "secret-scan",
+    "quality",
+    "semgrep",
+    "dependency-audit",
+    "container",
+    "zap-baseline",
+)
 
 
 def main_html() -> str:
@@ -57,3 +64,10 @@ def test_checks_panel_makes_no_live_status_claims():
 def test_hero_styles_exist():
     assert ".button--primary" in CSS
     assert ".checks" in CSS
+
+
+def test_checks_panel_count_matches_its_list():
+    panel = panel_html()
+    assert panel.count("<li>") == len(CHECKS) == 6
+    assert "all six" in panel
+    assert "five" not in panel.lower()
