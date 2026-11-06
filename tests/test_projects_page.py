@@ -56,3 +56,9 @@ def test_every_page_links_to_the_projects_page():
     for path in ("/", "/about", "/skills"):
         html = client.get(path).text
         assert 'href="/projects"' in html
+
+
+def test_projects_page_mentions_dynamic_scanning():
+    response = client.get("/projects")
+    assert response.status_code == 200
+    assert "dynamic scanning" in response.text
