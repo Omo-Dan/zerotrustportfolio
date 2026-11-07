@@ -24,7 +24,10 @@ unfixed findings entirely would hide real risk.
   layer as the locked install, so the service ships only what it runs.
 - Findings are not suppressed with an ignore file. If an exception is
   ever needed, it must record the finding, the reason and a review date.
-
+- When the pinned base image lags behind a published fix, a single package
+  may be upgraded in the Dockerfile. The step is marked as temporary, says
+  when to remove it, and is removed when the base image is updated.
+  
 ## Consequences
 When a distribution publishes a fix for a finding that was unfixed, the
 next build fails until the base image is updated. That is intended.
