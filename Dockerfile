@@ -6,6 +6,13 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /srv
 
+# Temporary: take the zlib security fix (CVE-2026-76844, CVE-2026-85091)
+# before the pinned base image includes it.
+# Remove when the base image ships zlib1g 1:1.3.dfsg+really1.3.1-1+deb13u1 or later.
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends --only-upgrade zlib1g \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt .
 RUN python -m pip install --require-hashes -r requirements.txt \
     && python -m pip uninstall --yes pip
