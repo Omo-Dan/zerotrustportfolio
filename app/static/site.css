@@ -234,3 +234,47 @@ footer a {
     scroll-behavior: auto !important;
   }
 }
+
+
+.projects {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.status {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  color: var(--accent);
+  font-size: 0.875rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.tags li {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.875rem;
+}
