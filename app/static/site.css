@@ -278,3 +278,7 @@ footer a {
   padding: 0.15rem 0.6rem;
   font-size: 0.875rem;
 }
+
+.card > :last-child {
+  margin-bottom: 0;
+}
