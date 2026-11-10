@@ -13,7 +13,8 @@ CSS = Path(__file__).resolve().parents[1] / "app" / "static" / "site.css"
 def _html() -> str:
     response = client.get("/projects")
     assert response.status_code == 200
-    return response.text
+    html: str = response.text
+    return html
 
 
 def _cards() -> list[str]:
