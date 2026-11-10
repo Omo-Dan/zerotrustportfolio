@@ -61,3 +61,11 @@ def test_stylesheet_defines_the_card_styles() -> None:
     css = CSS.read_text(encoding="utf-8")
     for selector in (".card", ".status", ".tags"):
         assert f"{selector} {{" in css, f"site.css has no rule for {selector}"
+
+
+def test_source_link_is_a_button() -> None:
+    first, _ = _cards()
+    assert (
+        '<a class="button" href="https://github.com/Omo-Dan/zerotrustportfolio">'
+        in first
+    )
