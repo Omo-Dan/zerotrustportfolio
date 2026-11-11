@@ -1,6 +1,7 @@
 import logging
 import os
 from collections.abc import Awaitable, Callable
+from datetime import UTC, datetime
 from pathlib import Path
 
 from fastapi import FastAPI, Request, Response
@@ -73,6 +74,7 @@ BASE_DIR = Path(__file__).parent
 app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 
 templates = Jinja2Templates(directory=BASE_DIR / "templates")
+templates.env.globals["current_year"] = lambda: datetime.now(UTC).year
 
 
 def page(request: Request, name: str) -> Response:
