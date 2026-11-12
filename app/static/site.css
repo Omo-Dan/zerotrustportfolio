@@ -145,17 +145,16 @@ nav a[aria-current="page"] {
 .skills.certs li {
   padding: 0.75rem 1rem;
 }
+
 footer {
   max-width: 40rem;
   margin: 0 auto;
   padding: 1.5rem 1.25rem 3rem;
   border-top: 1px solid var(--line);
   color: var(--muted);
+  text-align: center;
 }
 
-footer a {
-  margin-right: 1rem;
-}
 
 .actions {
   display: flex;
@@ -284,20 +283,26 @@ footer a {
 }
 
 .footer-note {
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  justify-content: center;
+  gap: 0.75rem;
   list-style: none;
-  margin: 0 0 1rem;
+  margin: 0 0 1.5rem;
   padding: 0;
 }
 
-.footer-copy {
+.footer-links .button {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+}
+
+.footer-year,
+.footer-name {
   margin: 0;
-  color: var(--muted);
   font-size: 0.875rem;
 }
