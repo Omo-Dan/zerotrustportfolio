@@ -62,3 +62,19 @@ def test_stylesheet_styles_the_footer_links() -> None:
 def test_footer_shows_the_current_year(path: str) -> None:
     year = datetime.now(UTC).year
     assert f"&copy; {year}" in _footer(path)
+
+
+@pytest.mark.parametrize("path", PAGES)
+def test_footer_links_are_buttons(path: str) -> None:
+    footer = _footer(path)
+    assert footer.count('<a class="button" href=') == 3
+
+
+@pytest.mark.parametrize("path", PAGES)
+def test_footer_puts_the_year_above_the_name(path: str) -> None:
+    year = datetime.now(UTC).year
+    pattern = (
+        rf'<p class="footer-year">&copy; {year}</p>\s*'
+        r'<p class="footer-name">Daniel Omondi Ojiambo</p>'
+    )
+    assert re.search(pattern, _footer(path))
