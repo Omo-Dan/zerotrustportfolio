@@ -1,6 +1,5 @@
 -c requirements.txt
 pytest
-httpx
+httpx2
 ruff
 mypy
-
