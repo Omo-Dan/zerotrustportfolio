@@ -1,11 +1,11 @@
 # Sprint 2: Live site
 
-Target release: v0.3.0
+Target release: v0.3.0, 17 November 2026
 
 ## Goal
 The site is live on Render, deployed only by the pipeline after the
-checks pass, and it has its first public pages. The live site is
-scanned, and the delivery process is proven to be recoverable.
+checks pass, and it has its first public pages. The built container is
+scanned dynamically on every change, and a rollback path is documented.
 
 ## Backlog
 Each item names the requirements it covers (see
@@ -18,10 +18,10 @@ Each item names the requirements it covers (see
 | S2-03 | Skills page, including certifications | ZT-17 | The page is served with the security headers and has tests |
 | S2-04 | About page | ZT-17 | The page is served with the security headers and has tests |
 | S2-05 | Projects page | ZT-17 | The page is served with the security headers and has tests |
-| S2-06 | ZAP baseline scan of the live site | ZT-17 | The scan runs against the deployed site and its report is kept |
+| S2-06 | ZAP baseline scan of the built container | ZT-17 | The scan runs against the built container on a private network (ADR-0004), the header rules fail the build, and the report is kept |
 | S2-07 | Dependabot for Python packages, GitHub Actions and Docker | ZT-16 | Update pull requests appear and pass through the same checks |
 | S2-08 | Replace httpx with httpx2 in the tests | QA-03 | The deprecation warning is gone and the tests pass |
-| S2-09 | Rollback drill | HE-06, AC-15 | A previous release is restored and the health check answers within minutes |
+| S2-09 | Rollback drill | HE-06, AC-15 | Moved to Sprint 3. The runbook is written and both paths were timed; the dated drill log is still to be recorded |
 | S2-10 | Multi-factor authentication on every maintainer account | HE-05 | Each account is listed and confirmed |
 
 ## Order of work
