@@ -32,3 +32,9 @@ updates:
     open-pull-requests-limit: 3
     commit-message:
       prefix: "build"
+    # Python upgrades are deliberate: CI, lock files and the image change together.
+    ignore:
+      - dependency-name: "python"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-major"
