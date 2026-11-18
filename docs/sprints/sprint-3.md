@@ -15,12 +15,12 @@ Each item names the requirements it covers (see
 | ID | Item | Covers | Done when |
 |----|------|--------|-----------|
 | S3-01 | Record the rollback drill | HE-06, AC-15 | The runbook has a dated drill log with measured times for both paths, and says what the drill does not prove |
-| S3-02 | ADR-0005: content and CV data model | ZT-11, T-10 | The decision record covers the engine, the data model, the hidden, learning and published statuses, the role tags, and the separate show-on-site and include-in-CV flags |
+| S3-02 | ADR-0005: content and CV data model | ZT-11 (reworded in ADR-0005), T-10 | The decision record covers the engine, the data model, the hidden, learning and published statuses, the role tags, and the separate show-on-site and include-in-CV flags |
 | S3-03 | Database and connection | ZT-12 | The app reaches a database with credentials that are never in the repository, and the app user has only the access it needs |
-| S3-04 | Content model | ZT-11 | Skills, certifications and projects are stored in tables, and a test proves that items that are not published never appear on a public page |
+| S3-04 | Content model | ZT-11 (reworded in ADR-0005) | Skills, certifications and projects are stored in tables, and a test proves that items that are not published never appear on a public page |
 | S3-05 | Skills page read from the database | ZT-17 | The page looks the same to a visitor, keeps its security headers, and the existing page tests still pass |
-| S3-06 | Abuse cases and requirements for admin sign-in | ZT-04 | The threat model and abuse cases for the admin area are written and reviewed before any sign-in code |
-| S3-07 | Admin sign-in with a second factor | ZT-04 | Only a signed-in admin with MFA reaches the admin area, and tests cover failed and missing sign-in |
+| S3-06 | Review the admin sign-in requirements and abuse cases | ZT-01, ZT-02, ZT-05, ZT-07, AC-01, AC-02, AC-03, AC-07 | The existing requirements and abuse cases are checked against the design, their sprint column is moved from 4 to 3, and anything missing is added before any sign-in code |
+| S3-07 | Admin sign-in with a second factor | ZT-01, ZT-02, ZT-03, ZT-05, ZT-07 | Sign-in needs an Argon2id password and a TOTP code, sessions expire and are replaced on login, forms are protected against CSRF, the endpoint is rate limited, admin routes deny by default, and each abuse case above has a test |
 
 ## Order of work
 Tests come first. For each item I write the check that proves it (a test
@@ -33,5 +33,5 @@ Decisions that change the design are written down as ADRs before code.
 - The changelog is updated and the release is tagged.
 
 ## Not in this sprint
-The contact form, CV export, the admin pages for editing content, and
-the AWS deployment.
+The contact form, CV export, the admin pages for editing content, the
+audit log, and the AWS deployment.
