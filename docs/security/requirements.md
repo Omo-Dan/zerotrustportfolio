@@ -27,7 +27,7 @@ delivered. If a requirement can't be checked, it doesn't belong here.
 | ZT-08 | Containers run as a non-root user with a read-only filesystem and no extra capabilities. | Container scan; config review | 1 |
 | ZT-09 | The application connects to the database with an account that only has the permissions it needs. | Config review; integration test | 3 |
 | ZT-10 | CI jobs and cloud roles get only the permissions their task requires. | Pipeline and IaC scans | 1, 5 |
-| ZT-11 | The CV export only includes contact details marked as public. | Automated tests | 4 |
+| ZT-11 | Public pages and the CV export only include items that are published or in progress and flagged for that output. Contact details are private unless marked. | Automated tests | 3, 4 |
 
 ## Assume breach
 
