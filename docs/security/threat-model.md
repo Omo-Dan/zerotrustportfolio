@@ -60,7 +60,7 @@ disclosure, Denial of service, Elevation of privilege.
 | T-07 | Information disclosure | A secret is committed to the repository | ZT-15 |
 | T-08 | Information disclosure | Error pages reveal internal details | ZT-14 |
 | T-09 | Information disclosure | Traffic is read or altered in transit | ZT-17 |
-| T-10 | Information disclosure | The CV export exposes private contact details | ZT-11 |
+| T-10 | Information disclosure | A page or the CV export exposes private contact details or unpublished items | ZT-11 |
 | T-11 | Information disclosure | Contact messages are kept longer than needed | ZT-20 |
 | T-12 | Information disclosure | The database is reachable from the internet | ZT-12, ZT-09 |
 | T-13 | Denial of service | Login or form endpoints are flooded | ZT-05 |

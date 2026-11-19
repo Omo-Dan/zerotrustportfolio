@@ -17,7 +17,7 @@ Tests only ever run against my own local and deployed instances.
 | AC-06 | Trick a signed-in admin into submitting a request from another site | A request without a valid CSRF token is rejected | T-15: ZT-03 | 4 |
 | AC-07 | Request admin pages without signing in | The response is a redirect to sign in or a 401/403, never the page | T-15: ZT-07 | 4 |
 | AC-08 | Flood the contact form with submissions | Excess requests get 429 and the database doesn't fill up | T-13: ZT-05 | 3 |
-| AC-09 | Download the public CV and look for private contact details | Only details marked public are in the file | T-10: ZT-11 | 4 |
+| AC-09 | Open every public page and download the CV, looking for private contact details or unpublished items | Only items that are published or in progress and flagged for that output are shown | T-10: ZT-11 | 3, 4 |
 | AC-10 | Send a malformed request to provoke an error page | A generic message comes back, with no stack trace or file paths | T-08: ZT-14 | 1 |
 | AC-11 | Commit a credential to the repository | The pre-commit hook and the CI job both block it | T-07: ZT-15 | 0 |
 | AC-12 | Slip a dependency with a known vulnerability into the build | The dependency scan fails the build | T-04: ZT-16 | 1 |
